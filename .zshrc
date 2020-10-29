@@ -1,5 +1,6 @@
 # Load Antigen
-source ~/.config/antigen.zsh
+ANTIGEN_PATH=~/Documents/Repositorios/dotfiles/
+source $ANTIGEN_PATH/antigen/antigen.zsh
 
 antigen init ~/.config/antigenrc
 
