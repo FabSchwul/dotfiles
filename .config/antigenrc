@@ -1,0 +1,26 @@
+# Load the oh-my-zsh's library
+antigen use oh-my-zsh
+
+# Plugins
+antigen bundles <<EOBUNDLES
+
+    # Bundles from the default repo (robbyrussell's oh-my-zsh).
+    git
+    command-not-found
+
+    # Auto suggestions bundle
+    zsh-users/zsh-autosuggestions
+    
+    # ZSH completions
+    zsh-users/zsh-completions
+    
+    # Powerline
+    powerline/powerline powerline/bindings/zsh
+    
+EOBUNDLES
+    
+# Themes
+# antigen theme denysdovhan/spaceship-prompt
+
+# Tell Antigen that you're done.
+antigen apply
