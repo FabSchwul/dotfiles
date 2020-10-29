@@ -1,5 +1,5 @@
 {
-	"name": "Default",
+	"name": "Elodin",
 	"groups": {
 		"information:additional":     { "fg": "gray9", "bg": "gray4", "attrs": [] },
 		"information:regular":        { "fg": "gray10", "bg": "gray4", "attrs": ["bold"] },
@@ -40,7 +40,7 @@
 		"battery_full":               { "fg": "red", "bg": "gray0", "attrs": [] },
 		"battery_empty":              { "fg": "white", "bg": "gray0", "attrs": [] },
 		"player":                     { "fg": "gray10", "bg": "black", "attrs": [] },
-		"user":                       { "fg": "white", "bg": "mediumpurple", "attrs": ["bold"] },
+		"user":                       { "fg": "white", "bg": "red", "attrs": ["bold"] },
 		"branch":                     { "fg": "gray9", "bg": "gray2", "attrs": [] },
 		"branch_dirty":               { "fg": "brightyellow", "bg": "gray2", "attrs": [] },
 		"branch_clean":               { "fg": "gray9", "bg": "gray2", "attrs": [] },

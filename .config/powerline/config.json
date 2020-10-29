@@ -17,7 +17,7 @@
 			"theme": "default"
 		},
 		"shell": {
-			"colorscheme": "default",
+			"colorscheme": "elodin",
 			"theme": "default",
 			"local_themes": {
 				"continuation": "continuation",
