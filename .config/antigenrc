@@ -15,12 +15,12 @@ antigen bundles <<EOBUNDLES
     zsh-users/zsh-completions
     
     # Powerline
-    powerline/powerline powerline/bindings/zsh
+    # powerline/powerline powerline/bindings/zsh
     
 EOBUNDLES
     
 # Themes
-# antigen theme denysdovhan/spaceship-prompt
+antigen theme denysdovhan/spaceship-prompt
 
 # Tell Antigen that you're done.
 antigen apply
