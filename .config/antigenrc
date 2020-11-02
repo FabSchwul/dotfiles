@@ -15,12 +15,16 @@ antigen bundles <<EOBUNDLES
     zsh-users/zsh-completions
     
     # Powerline
-    # powerline/powerline powerline/bindings/zsh
+    # powerline/powerline powerline/bindings/zsh 
     
 EOBUNDLES
     
 # Themes
 antigen theme denysdovhan/spaceship-prompt
+
+#Spaceship prompt configuration
+    SPACESHIP_DIR_TRUNC=0
+    SPACESHIP_CHAR_SYMBOL="$> " 
 
 # Tell Antigen that you're done.
 antigen apply

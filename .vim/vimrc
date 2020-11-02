@@ -1,0 +1,69 @@
+" Basic settings {{{1
+if &compatible
+	set nocompatible
+endif
+
+autocmd BufWritePre * silent! undojoin | %s/\s\+$//e
+filetype plugin indent on " Required by plugins
+" }}}1
+
+" Options settings {{{1
+" Buffer management {{{2
+set hidden
+set number
+set relativenumber
+set scrolloff=5
+set splitbelow
+set splitright
+" }}}2
+
+" Tabs {{{2
+set autoindent
+set tabstop=4
+set shiftwidth=4
+" }}}2
+
+" Other {{{2
+set foldmethod=marker
+set mouse=nvi
+set showcmd
+" }}}2
+" }}}1
+
+" Plugin manager {{{1
+if empty(glob('~/.vim/autoload/plug.vim'))
+	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+" }}}1
+
+" Plugins {{{1
+call plug#begin('~/.vim/plugged')
+
+" Airline {{{2
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" Use large separator characters to force an uniform look
+let g:airline_powerline_fonts = 1
+let g:airline_detect_paste    = 1
+" Visual style
+let g:airline_theme='fruit_punch'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_left_alt_sep = ''
+let g:airline_right_alt_sep = ''
+" Extensions
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+" }}}2
+
+" Color Schemes {{{2
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+" }}}2
+
+call plug#end()
+" }}}1
