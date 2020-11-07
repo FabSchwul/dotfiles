@@ -1,10 +1,16 @@
-" Basic settings {{{1
+ " Basic settings {{{1
 if &compatible
 	set nocompatible
 endif
 
 autocmd BufWritePre * silent! undojoin | %s/\s\+$//e
 filetype plugin indent on " Required by plugins
+let mapleader = " "
+" }}}1
+
+" Custom filetypes {{{1
+autocmd BufNewFile,BufRead *.cls  set filetype=plaintex
+autocmd BufNewFile,BufRead *.sty  set filetype=plaintex
 " }}}1
 
 " Options settings {{{1
@@ -28,6 +34,15 @@ set foldmethod=marker
 set mouse=nvi
 set showcmd
 " }}}2
+
+" Line limits {{{2
+set colorcolumn=100
+highlight ColorColumn ctermbg=110
+set wrap
+set linebreak
+set fixeol
+" }}}2
+
 " }}}1
 
 " Plugin manager {{{1
@@ -58,6 +73,105 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+" Symbols redefinition
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+	let g:airline_symbols.notexists = '✘'
+	let g:airline_symbols.maxlinenr = ''
+endif
+" }}}2
+
+" ALE (Asynchronous Lint Engine) {{{2
+Plug 'dense-analysis/ale'
+" Linters specification
+let g:ale_linters = {
+	\ 'c': ['gcc'],
+	\ 'cpp': ['g++']
+	\ }
+" Formatting options
+let g:ale_change_sign_column_color = 1
+let g:ale_sign_error   = ' ⏼'
+let g:ale_sign_warning = ' †'
+" C specific options
+let g:ale_c_cc_options     = '-std=c11 -Wall -Wextra -Wpedantic -Wfloat-equal -Iinclude'
+let g:ale_c_parse_makefile = 1
+" C++ specific options
+let g:ale_cpp_cc_options     = '-std=c++17 -Wall -Wextra -Wpedantic -Wfloat-equal -Iinclude'
+let g:ale_cpp_parse_makefile = 1
+" Other options
+let g:airline#extensions#ale#enabled = 0
+" }}}2
+
+" Commentary {{{2
+Plug 'tpope/vim-commentary'
+" }}}2
+
+" EasyAlign {{{2
+Plug 'junegunn/vim-easy-align'
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+" }}}2
+
+" Fugitive {{{2
+Plug 'tpope/vim-fugitive'
+" }}}2
+
+" Goyo {{{2
+Plug 'junegunn/goyo.vim'
+" }}}2
+
+" Limelight {{{2
+Plug 'junegunn/limelight.vim'
+" Automatically start and end with Goyo
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+" }}}2
+
+" Polyglot {{{2
+Plug 'sheerun/vim-polyglot'
+let g:polyglot_disabled = ['visual-basic']
+" C++ options
+let g:cpp_class_scope_highlight           = 1
+let g:cpp_member_variable_highlight       = 1
+let g:cpp_class_decl_highlight            = 1
+let g:cpp_posix_standard                  = 1
+let g:cpp_experimental_template_highlight = 1 " experimental_simple_template
+let g:cpp_concepts_highlight              = 1
+" Markdown options
+let g:vim_markdown_folding_disabled     = 1
+let g:vim_markdown_frontmatter          = 1
+let g:vim_markdown_math                 = 1
+let g:vim_markdown_new_list_item_indent = 2
+let g:vim_markdown_strikethrough        = 1
+" }}}2
+
+" UltiSnips "{{{2
+Plug 'sirver/UltiSnips'
+let g:UltiSnipsExpandTrigger       = "<Tab>"
+let g:UltiSnipsJumpForwardTrigger  = "<C-B>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-Z>"
+let g:UltiSnipsEditSplit           = "vertical"
+" }}}2
+
+" Undotree {{{2
+Plug 'mbbill/undotree'
+map <leader>u :UndotreeToggle<CR>
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_ShortIndicators = 1
+let g:undotree_TreeNodeShape = '●'
+let g:undotree_WindowLayout = 2
+" }}}2
+
+" VimTeX {{{2
+Plug 'lervag/vimtex'
+let g:tex_flavor='latex'
+let g:vimtex_compiler_enabled=0
+" Indentation options
+let g:vimtex_indent_enabled      = 0
+let g:vimtex_indent_bib_enabled  = 0
+let g:vimtex_indent_conditionals = {}
+let g:vimtex_indent_delims       = {}
+let g:vimtex_indent_lists        = []
 " }}}2
 
 " Color Schemes {{{2
@@ -66,4 +180,18 @@ Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 " }}}2
 
 call plug#end()
+" }}}1
+
+" Editor style {{{1
+" Highlight text based on code syntax
+syntax on
+" Colourscheme
+if has('nvim') || has('termguicolors')
+	set termguicolors
+endif
+colorscheme dracula
+" Show tab characters with low opacity (~20%) comment colour
+"Alternative tab character: »
+set listchars=tab:>\ ,trail:· list
+highlight SpecialKey guifg=#3F3E47
 " }}}1
